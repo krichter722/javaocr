@@ -26,8 +26,7 @@ public class SigmaWeightedEuclidianDistanceCluster extends NormalDistributionClu
      * create cluster calculating euclidian distance between center and feature
      * vector
      *
-     * @param c    assotiated character
-     * @param size size of feature cluster
+     * @param dimensions
      */
     public SigmaWeightedEuclidianDistanceCluster(int dimensions) {
         super(dimensions);
