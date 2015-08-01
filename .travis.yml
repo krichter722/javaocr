@@ -1,0 +1,14 @@
+# update of Android SDK fails due to `URL not found: /home/travis/build/krichter722/javaocr/android-sdk-linux/temp/sysimg_wear_x86-22_r02.zip (No space left on device)`
+before_install: exit 1
+
+#language: java # causes `before_script` (and possibly others) to be ignored
+before_script:
+# maven-enforcer-plugin restrictions which work locally are simply ignored (-> great!), but failures occur nevertheless
+ - wget http://apache.lauf-forum.at//maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz
+ - tar xf apache-maven-3.1.1-bin.tar.gz
+ - wget http://dl.google.com/android/android-sdk_r24.3.3-linux.tgz
+ - tar xf android-sdk_r24.3.3-linux.tgz
+# `android-maven-plugin` requires the update of Android SDK (recommended by error message or plugin itself)
+# simple echo or yes pipe doesn't work and --silent doesn't avoid interaction (licenses need to be confirmed) -> use workaround from http://stackoverflow.com/questions/17963508/how-to-install-android-sdk-build-tools-on-the-command-line
+ - ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | ./android-sdk-linux/tools/android update sdk --no-ui --obsolete --force
+script: env M2_HOME=./apache-maven-3.1.1 ANDROID_HOME=./android-sdk-linux ./apache-maven-3.1.1/bin/mvn verify
