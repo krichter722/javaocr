@@ -1,0 +1,9 @@
+language: java
+before_install:
+# maven-enforcer-plugin restrictions which work locally are simply ignored (-> great!), but failures occur nevertheless
+ - wget http://apache.lauf-forum.at//maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz
+ - tar xf apache-maven-3.1.1-bin.tar.gz
+ - wget https://dl.google.com/dl/android/studio/ide-zips/2.2.2.0/android-studio-ide-145.3360264-linux.zip
+ - unzip -q android-studio-ide-145.3360264-linux.zip
+install: /bin/true
+script: env M2_HOME=./apache-maven-3.1.1 ANDROID_HOME=./android-studio ./apache-maven-3.1.1/bin/mvn verify -Dandroid.sdk.path=./android-studio
