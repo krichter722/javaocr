@@ -6,5 +6,5 @@ before_script:
  - wget http://dl.google.com/android/android-sdk_r24.3.3-linux.tgz
  - tar xf android-sdk_r24.3.3-linux.tgz
 # yes pipe doesn't work and --silent doesn't avoid interaction (licenses need to be confirmed)
- - cd android-sdk-linux && echo y | ./android update sdk --no-ui --obsolete --force && cd ..
+ - cd android-sdk-linux && echo y | ./tools/android update sdk --no-ui --obsolete --force && cd ..
 script: env M2_HOME=./apache-maven-3.1.1 ANDROID_HOME=./android-sdk-linux ./apache-maven-3.1.1/bin/mvn verify
