@@ -49,17 +49,19 @@ public class OCRScannerDemo
 
     /**
      * Load demo training images.
-     * @param trainingImageDir The directory from which to load the images.
+     * @param trainingImageDirPath The directory from which to load the images.
      */
-    public void loadTrainingImages(String trainingImageDir)
+    public void loadTrainingImages(String trainingImageDirPath)
     {
         if (debug)
         {
-            System.err.println("loadTrainingImages(" + trainingImageDir + ")");
+            System.err.println("loadTrainingImages(" + trainingImageDirPath + ")");
         }
-        if (!trainingImageDir.endsWith(File.separator))
-        {
-            trainingImageDir += File.separator;
+        File trainingImageDir = new File(trainingImageDirPath);
+        if(!trainingImageDir.exists()) {
+            throw new IllegalArgumentException(String.format("training directory '%s' doesn't exist", trainingImageDirPath));
+        }else if(trainingImageDir.isFile()) {
+            throw new IllegalArgumentException(String.format("training directory path '%s' points to a file", trainingImageDirPath));
         }
         try
         {
@@ -70,24 +72,36 @@ public class OCRScannerDemo
             {
                 System.err.println("ascii.png");
             }
+            File traingImageFile = new File(trainingImageDir, "ascii.png");
+            if(!traingImageFile.exists()) {
+                throw new IllegalArgumentException(String.format("the training file '%s' doesn't exist", traingImageFile.getAbsolutePath()));
+            }
             loader.load(
-                    trainingImageDir + "ascii.png",
+                    traingImageFile.getAbsolutePath(),
                     new CharacterRange('!', '~'),
                     trainingImageMap);
             if (debug)
             {
                 System.err.println("hpljPica.jpg");
             }
+            File trainingHpljImageFile = new File(trainingImageDir, "hpljPica.jpg");
+            if(!trainingHpljImageFile.exists()) {
+                throw new IllegalArgumentException(String.format("the training file '%s' doesn't exist", trainingHpljImageFile.getAbsolutePath()));
+            }
             loader.load(
-                    trainingImageDir + "hpljPica.jpg",
+                    trainingHpljImageFile.getAbsolutePath(),
                     new CharacterRange('!', '~'),
                     trainingImageMap);
             if (debug)
             {
                 System.err.println("digits.jpg");
             }
+            File trainingDigitsImageFile = new File(trainingImageDir, "digits.jpg");
+            if(!trainingDigitsImageFile.exists()) {
+                throw new IllegalArgumentException(String.format("the training file '%s' doesn't exist", trainingDigitsImageFile.getAbsolutePath()));
+            }
             loader.load(
-                    trainingImageDir + "digits.jpg",
+                    trainingDigitsImageFile.getAbsolutePath(),
                     new CharacterRange('0', '9'),
                     trainingImageMap);
             if (debug)
