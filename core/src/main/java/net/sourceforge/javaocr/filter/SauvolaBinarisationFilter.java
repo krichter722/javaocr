@@ -27,7 +27,7 @@ import net.sourceforge.javaocr.ocr.PixelImage;
  * This filter allocates working images and can  be reused with destination image of same size.
  * Please note,  that  window/2 pixels on borders of image are invalid. It is responsibility of caller
  * to provide suitable padding.
- * <br/>
+ * <p>
  * Based on "Efficient Implementation of Local Adaptive Thresholding Techniques Using Integral Images" by
  * Faisal Shafait , Daniel Keysers , Thomas M. Breuel from Image Understanding and Pattern Recognition (IUPR) Research Group
  * German Research Center for Artificial Intelligence (DFKI) GmbH

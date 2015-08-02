@@ -24,10 +24,10 @@ import net.sourceforge.javaocr.cluster.FeatureExtractor;
 /**
  * class encapsulate Hu moment computations. See Gonzalez/Woods, Digital Image Processing, Prentice Hall
  * or Theodoridis/Koutroumbas, Pattern Recognition, Academic Press
- * <p/>
+ * <p>
  * http://www.informatik.haw-hamburg.de/fileadmin/Homepages/ProfMeisel/Vorlesungen/WP_RobotVision/V/RV06.pdf
  * pages 44-46
- * <p/>
+ * <p>
  */
 public class HuMoments implements FeatureExtractor {
 
