@@ -52,45 +52,40 @@
         </plugins>
     </build>
     <dependencies>
-          <dependency>
-              <groupId>${pom.groupId}</groupId>
-              <artifactId>javaocr-core</artifactId>
-              <version>${pom.version}</version>
-          </dependency>
         <dependency>
             <groupId>net.sourceforge.javaocr</groupId>
             <artifactId>javaocr-core</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.javaocr.plugins</groupId>
             <artifactId>javaocr-plugin-awt</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.javaocr.plugins</groupId>
             <artifactId>javaocr-plugin-cluster</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.javaocr.plugins</groupId>
             <artifactId>javaocr-plugin-fir</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.javaocr.plugins</groupId>
             <artifactId>javaocr-plugin-moment</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.javaocr.plugins</groupId>
             <artifactId>javaocr-plugin-morphology</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.javaocr.demos</groupId>
             <artifactId>javaocr-android-camera-utils</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
