@@ -17,12 +17,12 @@
         <dependency>
             <groupId>net.sourceforge.javaocr</groupId>
             <artifactId>javaocr-core</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>net.sourceforge.javaocr.demos</groupId>
             <artifactId>javaocr-android-camera-utils</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>

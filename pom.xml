@@ -62,6 +62,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
@@ -95,6 +96,30 @@
                         <goals>
                             <goal>jar-no-fork</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <!--different rules for different issues-->
+                                    <!--3.3.x causes `java.lang.NoClassDefFoundError: org/eclipse/aether/spi/connector/Transfer$State` which is caused by certain maven versions, see https://cwiki.apache.org/confluence/display/MAVEN/AetherClassNotFound for details-->
+                                    <version>(,3.3)</version>
+                                    <!--3.2.x causes `No implementation for org.eclipse.aether.connector.wagon.WagonConfigurator was bound.`-->
+                                    <version>(,3.2)</version>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

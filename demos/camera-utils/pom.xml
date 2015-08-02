@@ -24,7 +24,7 @@
         <dependency>
             <groupId>net.sourceforge.javaocr.plugins</groupId>
             <artifactId>javaocr-plugin-cluster</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>
