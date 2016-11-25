@@ -6,6 +6,6 @@ before_install:
 - wget https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
 - tar xf android-sdk_r24.4.1-linux.tgz
 # Need to update Android SDK in order to avoid `[ERROR] Failed to execute goal com.simpligility.maven.plugins:android-maven-plugin:4.1.1:generate-sources (default-generate-sources) on project javaocr-sampler: Execution default-generate-sources of goal com.simpligility.maven.plugins:android-maven-plugin:4.1.1:generate-sources failed: Error reading /home/travis/build/krichter722/javaocr/demos/sampler/android-studio/tools/source.properties -> [Help 1]`
-- ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | ./android-sdk-linux/tools/android update sdk --no-ui --obsolete --force
+- ( sleep 5 && while [ 1 ]; do sleep 1; echo y; done ) | ./android-sdk-linux/tools/android update sdk --no-ui --filter 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16 --force
 install: /bin/true
 script: env M2_HOME=./apache-maven-3.1.1 ANDROID_HOME=./android-sdk-linux ./apache-maven-3.1.1/bin/mvn verify -Dandroid.sdk.path=./android-sdk-linux
