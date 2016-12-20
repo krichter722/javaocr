@@ -1,1 +1,29 @@
 language: java
+install: /bin/true
+before_script:
+# We need Maven < 3.2 because it's enforced in `javaocr`
+- wget http://mirrors.ae-online.de/apache/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz
+- tar xf apache-maven-3.1.1-bin.tar.gz
+- export M2_HOME=$PWD/apache-maven-3.1.1
+- export PATH=$M2_HOME/bin:$PATH
+# We need the Android SDK since we're working on `javaocr` an need to make sure to not break its functionality
+#- wget https://dl.google.com/dl/android/studio/ide-zips/2.2.2.0/android-studio-ide-145.3360264-linux.zip
+#- unzip -q android-studio-ide-145.3360264-linux.zip
+- wget https://dl.google.com/android/repository/tools_r25.2.3-linux.zip
+- unzip -q tools_r25.2.3-linux.zip
+# extracts to `tools`
+# -q in order to avoid listing of each file and enlarging the Travis log without a clear advantage
+# `./tools/android update sdk --no-ui --obsolete --force` fails due to `No space left on device`
+- while [ 1 ]; do echo y; sleep 1; done | ./tools/android update sdk -a -u -t tools,platform-tools,build-tools-23.0.3,android-23
+# yes, that's how ridiculously complicated Android tools update is
+script:
+- echo $TRAVIS_BUILD_DIR
+- env ANDROID_HOME=$TRAVIS_BUILD_DIR mvn clean install -Dandroid.sdk.path=$TRAVIS_BUILD_DIR
+# ANDROID_HOME needs to point to the parent of `tools`<ref>http://stackoverflow.com/questions/41173477/android-cant-find-sdkmanager-jar/41248162#41248162</ref>
+- /bin/sh -c cd /home/travis/build/krichter722/javaocr/demos/sampler && /home/travis/build/krichter722/javaocr/build-tools/23.0.3/aapt package -m -J /home/travis/build/krichter722/javaocr/demos/sampler/target/generated-sources/r -f --no-crunch -M /home/travis/build/krichter722/javaocr/demos/sampler/target/AndroidManifest.xml -S /home/travis/build/krichter722/javaocr/demos/sampler/src/main/res --auto-add-overlay -I /home/travis/build/krichter722/javaocr/platforms/android-23/android.jar --output-text-symbols /home/travis/build/krichter722/javaocr/demos/sampler/target
+- ls -la /home/travis/build/krichter722/javaocr/build-tools/23.0.3/
+- ls -la /home/travis/build/krichter722/javaocr/demos/sampler/target/generated-sources/r
+- ls -la /home/travis/build/krichter722/javaocr/demos/sampler/target/
+- ls -la /home/travis/build/krichter722/javaocr/demos/sampler/src/main/res
+- ls -la /home/travis/build/krichter722/javaocr/platforms/android-23/
+- ls -la /home/travis/build/krichter722/javaocr/demos/sampler/target
